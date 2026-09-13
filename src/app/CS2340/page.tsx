@@ -69,9 +69,6 @@ export default function CoursePage() {
             About me
           </h2>
           <Paragraphs text={intro} />
-          <p className="mt-3">
-            <Link href="/">More on my homepage</Link>
-          </p>
         </section>
 
         <section className="mt-10" aria-labelledby="projects-heading">

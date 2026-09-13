@@ -15,9 +15,9 @@ export const course = {
 
 // Rubric item 1: an introduction of who you are.
 export const intro = [
-  "I'm Michael Peters, a computer science major with a math minor at Georgia Tech, class of 2028. I like working close to the metal, so most of what I build is systems software in Rust and C++.",
-  "This year that has taken a few forms. At Ditto, a Series B database startup, I interned on the query team: I built a UNION query engine for DQL and a from-scratch Rust expression interpreter that ships to iOS, Android, and the web through UniFFI and WebAssembly. At Trading at Georgia Tech, the school's student quant firm, I work on the high-frequency side, cutting microseconds off order-book updates in Rust and writing live feed listeners for exchanges. In the Tinker Lab I do quantum compilers research on Qwerty, a quantum programming language, extending its MLIR/LLVM compiler with new arithmetic circuits, one of which is merged upstream. And at DiSL, Georgia Tech's Data Intensive Systems Lab, I reproduced and extended H3Fusion, a mixture-of-experts framework for aligning large language models, benchmarking a dozen models on helpfulness, safety, and truthfulness.",
-  "This page collects my work for CS 2340, Objects and Design, in Fall 2026.",
+  "I'm Michael Peters, a CS student with a math minor at Georgia Tech! I like working in low-level systems, so a lot of what I've built has been in Rust and C++. Working in Python with Django has been a new learning opportunity for me!",
+  "So far, I've interned at Ditto, a Series B startup in Atlanta, working on offline edge database technology; developed HFT technology as part of the Georgia Tech Trading Club's Quant Sector; and done research on Qwerty, a quantum programming language.",
+  "This page contains the work and effort I've put into CS 2340, Objects and Design, in Fall 2026. I hope you enjoy!",
 ];
 
 export type ProjectStatus = "live" | "in progress" | "upcoming";
