@@ -6,9 +6,9 @@ export const profile = {
   // Written out to keep it away from address scrapers.
   email: "michaelcpeters115 [at] gmail [dot] com",
   highlights: [
-    "ditto · rust query engine for offline-first sync",
-    "tgt capital · low-latency order books in rust",
-    "tinker lab · qwerty quantum compiler on mlir",
+    "ditto · query engine intern at a series b database startup",
+    "trading at georgia tech · hft, order books in rust",
+    "tinker lab · quantum compilers research on qwerty",
     "disl · llm alignment research",
   ],
   links: [
