@@ -1,8 +1,7 @@
 // The /CS2340 page is built from this file. To add a project for the rest of
 // the semester, add an entry to `projects` below; the page updates on its own.
 //
-// Text in `backticks` renders as code. Paragraphs that start with "[Write here"
-// are placeholders for you to replace.
+// Text in `backticks` renders as code.
 
 export const course = {
   code: "CS 2340",
@@ -19,8 +18,6 @@ export const intro = [
   "So far, I've interned at Ditto, a Series B startup in Atlanta, working on offline edge database technology; developed HFT technology as part of the Georgia Tech Trading Club's Quant Sector; and done research on Qwerty, a quantum programming language.",
   "This page contains the work and effort I've put into CS 2340, Objects and Design, in Fall 2026. I hope you enjoy!",
 ];
-
-export type ProjectStatus = "live" | "in progress" | "upcoming";
 
 export type ProjectLink = {
   label: string;
@@ -43,8 +40,7 @@ export type UserStory = {
 export type Project = {
   number: number;
   title: string;
-  status: ProjectStatus;
-  /** Everything a grader needs, in the order they should see it. */
+  /** Everything a grader needs, in the order they should see it. A project with no links is shown as upcoming. */
   links?: ProjectLink[];
   /** A short line under the links, e.g. for an upcoming project. */
   note?: string;
@@ -62,86 +58,83 @@ export const projects: Project[] = [
   {
     number: 1,
     title: "GT Movies Store",
-    status: "live",
     links: [
       { label: "Live site", href: "https://michaelcpeters115.pythonanywhere.com" },
       { label: "Source code", href: "https://github.com/michaelpeters-dev/moviesstore" },
     ],
     description: [
-      "GT Movies Store is a Django web app for browsing and buying movies. Anyone can look through the catalog, search it by title, open a movie to read its description and reviews, and add copies to a cart. Signed-in users can also write reviews, edit or delete their own, buy what's in their cart, and look back at past orders.",
-      "The code is split into four Django apps that each own one part of the site: `home` (landing and About pages), `movies` (catalog, movie pages, reviews), `cart` (session-based cart, checkout, orders), and `accounts` (sign up, log in, log out). Each follows Django's Model–View–Template pattern: models backed by SQLite, function views that load data and enforce who may do what, and templates that extend one shared Bootstrap layout. The site is deployed on PythonAnywhere.",
-      "On top of the required stories I added one of my own: any signed-in user can report a review as inappropriate. Reporting sets a `reported` flag on the review, and the movie page only lists reviews with the flag off, so a reported review disappears right away without deleting the author's data.",
+      "GT Movies Store is a Django web app I built for this class. It's an online store for movies: you can browse the catalog, search for a movie by name, read what other people think of it, and buy it. If you make an account, you can also write your own reviews and keep track of what you've ordered.",
+      "I split the project into four Django apps, one for each part of the store: home, movies, cart, and accounts. Each has its own models, views, templates, and URLs, which kept things easy to find as the project grew. The site is deployed on PythonAnywhere.",
+      "For my own user story, I added the ability to report a review. Any signed-in user can flag a review that's inappropriate, and it's hidden from the movie page right away.",
     ],
     userStories: [
       {
-        story: "Browse the movie catalog",
+        story: "Browse the movies",
         screen: "Movies page",
-        how: "Lists every movie in the store; each card opens that movie's own page.",
+        how: "Every movie in the store is shown as a card. Clicking one opens its page.",
       },
       {
-        story: "Search for a movie by title",
+        story: "Search for a movie",
         screen: "Movies page",
-        how: "The search box submits a `search` query; the view filters with a case-insensitive `name__icontains` match and shows only the hits.",
+        how: "A search bar at the top filters the list down to movies whose name matches what you typed.",
       },
       {
         story: "See a movie's details and reviews",
         screen: "Movie page",
-        how: "Shows the description, price, a quantity picker with Add to cart, and every review that hasn't been reported.",
+        how: "Shows the description, the price, an Add to cart button with a quantity, and the reviews people have left.",
       },
       {
-        story: "Create an account, log in, log out",
+        story: "Sign up, log in, and log out",
         screen: "Sign Up and Login pages",
-        how: "Sign up uses a custom `UserCreationForm` with its own error formatting; login authenticates and sends you home; logout is only available to signed-in users.",
+        how: "New users create an account with a username and password. The navbar shows Login and Sign Up when you're logged out, and Orders and Logout when you're in.",
       },
       {
         story: "Write a review",
         screen: "Movie page",
-        how: "Signed-in users get a comment box under the reviews; submitting saves a `Review` linked to the user and the movie.",
+        how: "Logged-in users get a comment box under the reviews. Submitting it adds your review to the list.",
       },
       {
-        story: "Edit or delete my own review",
+        story: "Edit or delete my review",
         screen: "Movie page, Edit review page",
-        how: "Edit and delete controls appear only on your own reviews, and the views check the owner again on the server before changing anything.",
+        how: "Your own reviews have Edit and Delete options. Nobody else's do, and the server checks that too.",
       },
       {
-        story: "Add movies to a cart",
+        story: "Add movies to my cart",
         screen: "Movie page, Cart page",
-        how: "The quantity (1 to 10) is stored in the Django session keyed by movie id. The cart page lists the movies, totals price × quantity, and can clear the cart.",
+        how: "Pick a quantity and click Add to cart. The Cart page lists what you've added, shows the total, and can clear everything.",
       },
       {
-        story: "Buy what's in the cart",
+        story: "Buy the movies in my cart",
         screen: "Purchase confirmation page",
-        how: "Checkout (signed-in users only) creates an `Order` with the total and one `Item` per movie, empties the cart, and shows the order number.",
+        how: "Checking out (while logged in) saves an order with everything in the cart, empties the cart, and shows a confirmation with the order number.",
       },
       {
-        story: "See my past orders",
+        story: "See my orders",
         screen: "Orders page",
-        how: "Lists the signed-in user's orders with the movies and quantities in each.",
+        how: "Lists every order you've placed, with the movies in each and the total.",
       },
       {
-        story: "Read about the store",
+        story: "Learn about the store",
         screen: "About page",
-        how: "A static page reachable from the navigation bar and the footer.",
+        how: "A simple page about the store, linked from the navbar and the footer.",
       },
       {
         story: "Report an inappropriate review",
         screen: "Movie page",
-        how: "A Report control on each review sets `reported = True`; the movie page filters reported reviews out.",
+        how: "Every review has a Report option. Reporting hides the review from the page for everyone.",
         tag: "my own story",
       },
     ],
     process: [
-      "I built the app one user story at a time, in the order the course introduces them: the shared layout and home pages first, then the movies catalog and search, then accounts, reviews, and finally the cart and orders. For each story I added the model change, the view, the URL, and the template together, ran the site locally with `manage.py runserver`, and clicked through the new screen before moving on.",
-      "[Write here: did you follow the course textbook chapter by chapter, plan the stories up front, or work in sprints? How did you pick your own user story?]",
-      "[Write here: how you handled questions and doubts, e.g. the Django documentation, office hours, Ed Discussion, classmates, or TAs, with one concrete example.]",
-      "Once the app worked locally, I put the code on GitHub and deployed it to PythonAnywhere, then added the report-a-review story as its own commit on top of the working app.",
+      "I worked on this project one user story at a time. For each one I'd add the model, the view, the URL, and the template it needed, run the site locally, and click through the new screen until it worked before moving on. I built things in the order the course introduces them: the layout and home page first, then movies, accounts, reviews, and finally the cart and orders. That way I always had a working site and only one new thing to debug.",
+      "Python and Django were new to me, so when I had a question my first stop was the course textbook, then the Django documentation. When something broke, I read the error page Django gives you, checked the docs for the piece I was using, and tried small changes until it made sense. Coming from Rust and C++, the biggest adjustment was letting the framework do things for me instead of writing them myself.",
+      "Once everything worked locally, I put the code on GitHub, deployed the site to PythonAnywhere, and then added my own user story, reporting reviews, on top of the working app.",
     ],
     video: {},
   },
   {
     number: 2,
     title: "Team project",
-    status: "upcoming",
     note: "Posted here once it's assigned.",
   },
 ];

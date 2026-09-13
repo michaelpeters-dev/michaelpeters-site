@@ -15,12 +15,6 @@ function DisplayUrl({ href }: { href: string }) {
   ));
 }
 
-const status = {
-  live: { label: "Live", dot: "bg-live" },
-  "in progress": { label: "In progress", dot: "bg-gold" },
-  upcoming: { label: "Upcoming", dot: "bg-line" },
-};
-
 function LinkRow({ link }: { link: ProjectLink }) {
   return (
     <div className="grid gap-x-6 gap-y-0.5 py-2.5 sm:grid-cols-[150px_1fr]">
@@ -94,8 +88,7 @@ function Video({ video, title }: { video: NonNullable<Project["video"]>; title: 
 }
 
 export function ProjectCard({ project }: { project: Project }) {
-  const { label, dot } = status[project.status];
-  const upcoming = project.status === "upcoming";
+  const upcoming = !project.links;
   const id = `project-${project.number}`;
 
   return (
@@ -103,16 +96,10 @@ export function ProjectCard({ project }: { project: Project }) {
       id={id}
       className={`rounded-2xl border border-line px-5 py-5 sm:px-7 sm:py-6 ${upcoming ? "border-dashed" : ""}`}
     >
-      <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <h3 className="text-[20px] leading-tight font-semibold text-navy">
-          Project {project.number}
-          <span className="ml-3 border-l-2 border-gold pl-3 font-normal text-ink">{project.title}</span>
-        </h3>
-        <p className="inline-flex items-center gap-[7px] rounded-full border border-line py-px pr-[11px] pl-[9px] text-xs text-ink">
-          <span className={`size-[7px] rounded-full ${dot}`} aria-hidden="true" />
-          {label}
-        </p>
-      </header>
+      <h3 className="text-[20px] leading-tight font-semibold text-navy">
+        Project {project.number}
+        <span className="ml-3 border-l-2 border-gold pl-3 font-normal text-ink">{project.title}</span>
+      </h3>
 
       {project.links && (
         <dl className="mt-4 divide-y divide-line border-t border-line">

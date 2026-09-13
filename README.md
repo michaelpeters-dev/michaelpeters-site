@@ -19,7 +19,7 @@ Open <http://localhost:3000> and <http://localhost:3000/CS2340>.
 ## Update content
 
 - **Homepage:** edit `src/content/profile.ts`.
-- **CS 2340 projects:** edit `src/content/cs2340.ts`. Each project is one entry in the `projects` array. Give each project the links a grader needs (live site, source code, recording, report), in the order they should see them. A link without an `href` shows as "Not posted yet" until you fill it in. Set `status` to `"live"`, `"in progress"`, or `"upcoming"`.
+- **CS 2340 projects:** edit `src/content/cs2340.ts`. Each project is one entry in the `projects` array. Give each project the links a grader needs (live site, source code, recording, report), in the order they should see them. A link without an `href` shows as "Not posted yet" until you fill it in; a project with no links at all is shown as upcoming.
 
 ## Check before publishing
 
