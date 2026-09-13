@@ -50,8 +50,12 @@ export type Project = {
   userStories?: UserStory[];
   /** Rubric item 3: how you worked, what methodology, how you handled doubts. Paragraphs. */
   process?: string[];
-  /** Rubric item 4: the demo. Set `youtubeId` (the part after `v=` in the YouTube URL) to embed it, or `href` to link out. `{}` shows a "coming soon" box. */
-  video?: { youtubeId?: string; href?: string };
+  /**
+   * Rubric item 4: the demo. Set `youtubeId` (the part after `v=` in the YouTube URL) to embed
+   * it, or `href` to link out (`text` is the link's wording, `note` a line under it).
+   * `{}` shows a "coming soon" box.
+   */
+  video?: { youtubeId?: string; href?: string; text?: string; note?: string };
 };
 
 export const projects: Project[] = [
@@ -130,7 +134,11 @@ export const projects: Project[] = [
       "Python and Django were new to me, so when I had a question my first stop was the course textbook, then the Django documentation. When something broke, I read the error page Django gives you, checked the docs for the piece I was using, and tried small changes until it made sense. Coming from Rust and C++, the biggest adjustment was letting the framework do things for me instead of writing them myself.",
       "Once everything worked locally, I put the code on GitHub, deployed the site to PythonAnywhere, and then added my own user story, reporting reviews, on top of the working app.",
     ],
-    video: {},
+    video: {
+      href: "https://teams.microsoft.com/l/message/19:XGhQtCrFddVW0brKcTFWxAEKFAY8tmXsSMeBY3w9Rc81@thread.tacv2/1789335152904?tenantId=482198bb-ae7b-4b25-8b7a-6d7f32faa083&groupId=a8b63588-d44d-4757-9274-38bda47b9f44&parentMessageId=1789335152904&teamName=CS2340&channelName=General&createdTime=1789335152904",
+      text: "Open in Microsoft Teams",
+      note: "Posted in the CS2340 team on Microsoft Teams, in the General channel. You need to be signed in to Teams to open it.",
+    },
   },
   {
     number: 2,

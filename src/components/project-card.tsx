@@ -73,11 +73,14 @@ function Video({ video, title }: { video: NonNullable<Project["video"]>; title: 
   }
   if (video.href) {
     return (
-      <p>
-        <a href={video.href} className="text-navy decoration-gold/60 hover:decoration-gold">
-          Watch the demo video
-        </a>
-      </p>
+      <>
+        <p>
+          <a href={video.href} className="text-navy decoration-gold/60 hover:decoration-gold">
+            {video.text ?? "Watch the demo video"}
+          </a>
+        </p>
+        {video.note && <p className="mt-1.5 text-[13px] text-muted">{video.note}</p>}
+      </>
     );
   }
   return (
@@ -90,6 +93,13 @@ function Video({ video, title }: { video: NonNullable<Project["video"]>; title: 
 export function ProjectCard({ project }: { project: Project }) {
   const upcoming = !project.links;
   const id = `project-${project.number}`;
+  // The demo video also gets a row up top, so a grader finds every link in one place.
+  const videoLink: ProjectLink | undefined = project.video?.youtubeId
+    ? { label: "Demo video", href: `https://www.youtube.com/watch?v=${project.video.youtubeId}`, text: "Watch on YouTube" }
+    : project.video?.href
+      ? { label: "Demo video", href: project.video.href, text: project.video.text ?? "Watch the demo video" }
+      : undefined;
+  const links = project.links && videoLink ? [...project.links, videoLink] : project.links;
 
   return (
     <article
@@ -101,9 +111,9 @@ export function ProjectCard({ project }: { project: Project }) {
         <span className="ml-3 border-l-2 border-gold pl-3 font-normal text-ink">{project.title}</span>
       </h3>
 
-      {project.links && (
+      {links && (
         <dl className="mt-4 divide-y divide-line border-t border-line">
-          {project.links.map((link) => (
+          {links.map((link) => (
             <LinkRow key={link.label} link={link} />
           ))}
         </dl>
