@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Site palette. Navy and gold are Georgia Tech's brand colors. */
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #161616;
+  --color-body: #3a3a3a;
+  --color-muted: #6f7275;
+  --color-line: #e5e4df;
+  --color-canvas: #fcfcfa;
+  --color-dot: #dcd9cd;
+  --color-navy: #003057;
+  --color-navy-deep: #00223e;
+  --color-gold: #b3a369;
+  --color-gold-ink: #74652d;
+  --color-gold-tint: #f3efe2;
+  --color-live: #2f8f55;
+}
+
+@theme inline {
+  --font-mono: var(--font-plex), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-paper font-mono text-[15px] leading-[1.7] text-body antialiased;
+  }
+
+  a {
+    @apply underline decoration-[#bdbdbd] decoration-1 underline-offset-4 hover:decoration-current;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-offset-[3px] outline-ink;
+  }
+}
